@@ -2,12 +2,11 @@ name: Pruebas Automatizadas
 
 on:
   push:
-    branches:
-      
-master
+    branches: 
+    	master
 pull_request:
   branches:
-master
+	master
 
 jobs:
   test:
