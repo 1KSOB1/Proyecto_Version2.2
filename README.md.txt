@@ -1,164 +1,108 @@
-📌 Proyecto: API REST con Spring WebFlux
-
-Este proyecto es una API REST desarrollada con Spring Boot WebFlux, que maneja pedidos y productos de manera reactiva. Implementa soporte para múltiples idiomas (i18n), pruebas automatizadas y configuración de seguridad.
-
-🚀 Tecnologías Utilizadas
-
-Spring Boot 3
-
-Spring WebFlux (Programación reactiva)
-
-Spring Security (Configuración básica de seguridad)
-
-i18n (Internacionalización)
-
-Lombok (Para reducir código repetitivo)
-
-Reactor Core (Para manejo de datos reactivos)
-
-Mockito y JUnit 5 (Para pruebas automatizadas)
-
-📁 Estructura del Proyecto
-
-parcial3/
-│── src/main/java/parcial3/
-│   ├── config/         # Configuración de i18n y seguridad
-│   ├── controllers/    # Controladores REST
-│   ├── dtos/           # Clases DTO (Data Transfer Objects)
-│   ├── services/       # Servicios de lógica de negocio
-│   ├── LocaleConfig.java  # Configuración de idiomas
-│   ├── SecurityConfig.java # Configuración de seguridad
-│── src/test/java/parcial3/ # Pruebas unitarias
-│── pom.xml              # Dependencias del proyecto
-│── README.md            # Documentación
-
-📌 Endpoints Disponibles
-
-📦 Gestión de Productos
-
-Método
-
-Endpoint
+Proyecto: Mi Aplicación Spring Boot
 
 Descripción
 
-GET
+Este es un proyecto de ejemplo desarrollado con Spring Boot para demostrar la creación de una API REST con pruebas automatizadas utilizando JUnit 5 y WebTestClient.
 
-/api/productos
+Tecnologías Utilizadas
 
-Listar productos
+Java 17
 
-📋 Gestión de Pedidos
+Spring Boot
 
-Método
+Maven
 
-Endpoint
+JUnit 5
 
-Descripción
+WebTestClient
 
-GET
+IntelliJ IDEA
 
-/api/pedidos
+Requisitos Previos
 
-Listar pedidos
+Antes de ejecutar el proyecto, asegúrate de tener instalado:
 
-POST
+JDK 17 o superior
 
-/api/pedidos
+Maven
 
-Crear pedido
+IntelliJ IDEA
 
-GET
+Instalación
 
-/api/pedidos/mensaje
+Clonar el repositorio:
 
-Obtener mensaje en el idioma solicitado
+git clone https://github.com/tuusuario/miaplicacion.git
+cd miaplicacion
 
-🌍 Internacionalización (i18n)
-
-Método
-
-Endpoint
-
-Descripción
-
-GET
-
-/api/saludo?lang=es
-
-Mensaje en español
-
-GET
-
-/api/saludo?lang=fr
-
-Mensaje en francés
-
-GET
-
-/api/saludo?lang=en
-
-Mensaje en inglés (por defecto)
-
-🔒 Seguridad
-
-Se ha configurado Spring Security para permitir todas las solicitudes sin autenticación. Sin embargo, está preparado para futuras mejoras de seguridad.
-
-@Configuration
-@EnableWebFluxSecurity
-public class SecurityConfig {
-    @Bean
-    public SecurityWebFilterChain securityWebFilterChain(ServerHttpSecurity http) {
-        http
-            .csrf(ServerHttpSecurity.CsrfSpec::disable)
-            .authorizeExchange(exchanges -> exchanges.anyExchange().permitAll())
-            .httpBasic(ServerHttpSecurity.HttpBasicSpec::disable)
-            .formLogin(ServerHttpSecurity.FormLoginSpec::disable);
-        return http.build();
-    }
-}
-
-🧪 Pruebas Automatizadas
-
-Se implementaron pruebas con JUnit 5 y Mockito para validar la creación de pedidos y productos de manera reactiva.
-
-📝 Ejemplo de Prueba con StepVerifier
-
-@Test
-void testCrearPedido() {
-    Pedido nuevoPedido = new Pedido("1", "Monitor", 1, 300.0, LocalDateTime.now());
-    PedidoService pedidoService = new PedidoService();
-    Mono<Pedido> resultado = pedidoService.crearPedido(nuevoPedido);
-    
-    StepVerifier.create(resultado)
-        .expectNextMatches(pedido -> pedido.getProducto().equals("Monitor"))
-        .verifyComplete();
-}
-
-🛠 Configuración de Internacionalización (i18n)
-
-Los mensajes están definidos en archivos dentro de resources:
-
-src/main/resources/
-│── messages_en.properties  # Mensajes en inglés
-│── messages_es.properties  # Mensajes en español
-│── messages_fr.properties  # Mensajes en francés
-
-Ejemplo (messages_es.properties):
-
-saludo=Hola, bienvenido a nuestra API
-mensaje.lista=Lista de pedidos obtenida con éxito
-mensaje.creado=Pedido creado exitosamente
-
-⚡ Instalación y Ejecución
-
-1️⃣ Clonar el Repositorio
-
-git clone https://github.com/tu-repo/parcial3.git
-cd parcial3
-
-2️⃣ Construcción del Proyecto
+Compilar el proyecto con Maven:
 
 mvn clean install
 
-3️⃣ Ejecutar la Aplicación
+Ejecución de la Aplicación
+
+Para ejecutar el proyecto, usa el siguiente comando:
+
+mvn spring-boot:run
+
+O desde IntelliJ IDEA:
+
+Abre el proyecto en IntelliJ IDEA.
+
+Dirígete a la clase MiaplicacionApplication.java.
+
+Haz clic en Run.
+
+Una vez iniciado, la API estará disponible en:
+
+http://localhost:8080/api
+
+Endpoints Disponibles
+
+1. Crear un Producto
+
+Método: POST
+
+URL: /api/productos
+
+Cuerpo de la Petición:
+
+{
+  "id": null,
+  "nombre": "Producto Test"
+}
+
+Respuesta Esperada:
+
+{
+  "id": "1",
+  "nombre": "Producto Test"
+}
+
+2. Obtener un Producto por ID
+
+Método: GET
+
+URL: /api/productos/{id}
+
+3. Eliminar un Producto
+
+Método: DELETE
+
+URL: /api/productos/{id}
+
+Ejecución de Pruebas
+
+Para ejecutar las pruebas automatizadas, usa:
+
+mvn test
+
+Esto ejecutará las pruebas de integración en ProductoIntegrationTest.java.
+
+Autores
+
+Kevin Sam - kevinsam31@gmail.com
+
+Licencia
+
+Este proyecto está bajo la licencia MIT.
