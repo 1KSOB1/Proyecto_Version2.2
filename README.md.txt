@@ -97,7 +97,7 @@ Para ejecutar las pruebas automatizadas, usa:
 
 mvn test
 
-Esto ejecutará las pruebas de integración en ProductoIntegrationTest.java.
+Esto ejecutará las pruebas de integración en parcial3.ProductoIntegrationTest.java.
 
 Autores
 
