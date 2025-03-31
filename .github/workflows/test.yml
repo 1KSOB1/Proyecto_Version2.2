@@ -21,9 +21,6 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
 
-      - name: Dar permisos de ejecución a Maven Wrapper
-        run: chmod +x ./mvnw
-
       - name: Ejecutar pruebas
-        run: ./mvnw test
+        run: mvn test
 
